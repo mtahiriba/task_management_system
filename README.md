@@ -3,7 +3,7 @@ Task Management system build by using React and tailwind CSS.
 
 You can install taiwind CSS to follow this link: https://tailwindcss.com/docs/guides/create-react-app
 
-##Output Result
+## Output Result
 ![image](https://github.com/mtahiriba/task_management_system/assets/109303665/1eb2317e-81df-49d1-b462-f9e760deefc2)
 ![image](https://github.com/mtahiriba/task_management_system/assets/109303665/b196f408-144e-4f3f-9985-5ef8729874af)
 ![image](https://github.com/mtahiriba/task_management_system/assets/109303665/23cee3e9-5646-40d9-9e10-2146aa30d7ee)
