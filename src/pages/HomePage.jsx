@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskForm from '../components/TaskForm';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import TaskList from '../components/TaskList'
 import { TASKS } from '../shared/Tasks'
 
 function HomePage() {
     
     const [tasks, setTasks] = useState(TASKS)
-    const user = JSON.parse(localStorage.getItem('user'))
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
+    const navigate = useNavigate();
 
     const addTask = (task) => {
 
@@ -25,32 +27,44 @@ function HomePage() {
       
     };
 
+    useEffect(() => {
+      if(!user){
+        navigate('/signin')
+      }
+    }, [])
+    
+
 
     const deleteTask = (index) => {
       const updatedTasks = tasks.filter((_, i) => i !== index);
       setTasks(updatedTasks);
     };
+    if(user){
+      return (
+        <div className='md:h-screen'>
+          <div className='bg-gray-800 flex justify-between md:h-[10%] px-5 md:px-12'>
+              <h1 className='py-5 text-white text-md md:text-xl font-bold'>Task Management System</h1>
+              <h1 className='py-5 text-white text-md md:text-xl font-bold hidden md:block'>{user.group}</h1>
+              <Link to="/signin">
+                <h1 className='py-5 text-white text-md md:text-xl font-bold'>Logout</h1>
+              </Link>
+  
+          </div>
+          <div className='w-full h-[90%] flex flex-col lg:flex-row'>
+            <div className='bg-gray-200 md:h-full w-full lg:w-2/6 px-12 flex items-center justify-center py-16'>
+              <TaskForm addTask={addTask} user={user}/>
+            </div>
+            <div className='bg-white md:h-full w-full lg:w-4/6 p-4'>
+                <TaskList tasks={tasks} user={user} deleteTask={deleteTask}/>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    else{
+      return(<></>)
+    }
     
-    return (
-      <div className='md:h-screen'>
-        <div className='bg-gray-800 flex justify-between md:h-[10%] px-5 md:px-12'>
-            <h1 className='py-5 text-white text-md md:text-xl font-bold'>Task Management System</h1>
-            <h1 className='py-5 text-white text-md md:text-xl font-bold hidden md:block'>{user.group}</h1>
-            <Link to="/signin">
-              <h1 className='py-5 text-white text-md md:text-xl font-bold'>Logout</h1>
-            </Link>
-
-        </div>
-        <div className='w-full h-[90%] flex flex-col lg:flex-row'>
-          <div className='bg-gray-200 md:h-full w-full lg:w-2/6 px-12 flex items-center justify-center py-16'>
-            <TaskForm addTask={addTask} user={user}/>
-          </div>
-          <div className='bg-white md:h-full w-full lg:w-4/6 p-4'>
-              <TaskList tasks={tasks} user={user} deleteTask={deleteTask}/>
-          </div>
-        </div>
-      </div>
-    );
 }
 
 export default HomePage
