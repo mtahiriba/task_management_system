@@ -13,7 +13,7 @@ export const TASKS = [
         title: "Update form of home page",
         description: "You have to use local component state to manage the data",
         group: "Group A",
-        completed: true
+        completed: false
     },
     {
         _id: '3',
@@ -21,7 +21,7 @@ export const TASKS = [
         title: "Footer change",
         description: "Make it attractive",
         group: "Group A",
-        completed: true
+        completed: false
     },
     {
         _id: '4',
@@ -37,7 +37,7 @@ export const TASKS = [
         title: "assign new task",
         description: "You have to use local component state to manage the data",
         group: "Group B",
-        completed: true
+        completed: false
     },
     {
         _id: '6',

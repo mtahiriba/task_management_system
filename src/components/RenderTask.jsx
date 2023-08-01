@@ -6,12 +6,12 @@ const RenderTask = ({task, deleteTask, index}) => {
     <tr className="h-16 text-xs md:text-md" key={task._id}>
         <td>
           <div className="w-full flex justify-center items-center">
-            <input className="w-3 h-3 md:w-4 md:h-4" type="checkbox" />
+            <input className="w-3 h-3 md:w-4 md:h-4" type="checkbox" checked={task.completed}/>
           </div>
         </td>
         <td>
           <div className="flex items-center space-x-7">
-            <div>
+            <div className='font-bold'>
               {task.assignTo}
             </div>
           </div>
